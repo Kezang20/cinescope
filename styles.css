@@ -129,3 +129,17 @@ body{
 @media (max-width:380px){
   .grid{ grid-template-columns: 1fr; }
 }
+
+#genreSelect {
+  background-color: #b71c1c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+#genreSelect option {
+  background-color: #111;
+  color: white;
+}
