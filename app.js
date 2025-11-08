@@ -600,3 +600,4 @@ DOM.genreSelect.addEventListener('change', async e => {
         }
     }
 });
+

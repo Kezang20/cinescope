@@ -190,7 +190,6 @@ body {
 }
 
 /* ---------- Card Actions ---------- */
-/* --- Fix overlapping buttons --- */
 .card-actions {
     display: flex;
     flex-wrap: wrap;
@@ -219,32 +218,71 @@ body {
     }
 }
 
-
 .watch-btn.added {
     background: rgba(255, 255, 255, 0.06);
     color: #ffd8d8;
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Responsive tweaks */
-@media (max-width:860px) {
-    .card-actions .btn {
-        flex: 1 1 calc(50% - 4px);
+/* ---------- Header Responsive Fix ---------- */
+@media (max-width: 860px) {
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .search-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+        margin: 0;
+    }
+
+    #search-input,
+    #search-btn,
+    #genreSelect {
+        width: 100%;
+    }
+
+    #genreSelect {
+        margin-top: 4px;
+    }
+
+    /* Nav adjustments for hamburger menu */
+    .nav {
+        display: none; /* hide nav by default on small screens */
+        flex-direction: column;
+        width: 100%;
+        gap: 6px;
+        position: absolute;
+        top: 60px; /* adjust if your header height changes */
+        left: 0;
+        background-color: var(--panel);
+        padding: 10px 0;
+        z-index: 20;
+    }
+
+    .nav.open { /* show nav when hamburger is clicked */
+        display: flex;
+    }
+
+    .nav a,
+    .nav button,
+    .nav-btn {
+        width: 100%;
+        text-align: left;
+        padding: 10px 20px;
+    }
+
+    .icon-btn {
+        display: block; /* show hamburger button */
     }
 }
 
-@media (max-width:520px) {
-    .card-actions .btn {
-        flex: 1 1 100%;
-    }
-
-    /* stack buttons vertically on mobile */
-}
-
-.watch-btn.added {
-    background: rgba(255, 255, 255, 0.06);
-    color: #ffd8d8;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+.nav.hidden {
+    display: none;
 }
 
 .hero {
@@ -326,7 +364,6 @@ body {
     display: none;
 }
 
-/* responsive */
 @media (max-width:860px) {
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -334,14 +371,6 @@ body {
 
     .poster {
         height: 220px;
-    }
-
-    .search-wrap {
-        display: none;
-    }
-
-    .icon-btn {
-        display: block;
     }
 }
 
@@ -378,13 +407,12 @@ body {
 
 .friends-images img {
     transition: transform 0.2s;
-    border-radius: 50%; /* makes the images circular */
-    object-fit: cover;   /* ensures the image fills the circle nicely */
-    width: 100px;        /* you can adjust size */
-    height: 100px;       /* same as width to keep it perfectly circular */
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
 }
 
 .friends-images img:hover {
     transform: scale(1.05);
 }
-
