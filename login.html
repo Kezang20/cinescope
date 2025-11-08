@@ -50,6 +50,11 @@
   </div>
 
   <script>
+
+    if (localStorage.getItem("isLoggedIn") === "true") {
+  window.location.href = "index.html";
+}
+
     // Get input fields
     const loginUsername = document.getElementById("loginUsername");
     const loginPassword = document.getElementById("loginPassword");
@@ -74,7 +79,7 @@
 
     // Sign up function
     function signup() {
-      if (!signupUsername.value || !signupEmail.value || !signupPassword.value) {
+      if (!signupUsername.value||!signupEmail.value||!signupPassword.value) {
         alert("Please fill in all fields.");
         return;
       }
@@ -102,6 +107,7 @@
       }
     }
   </script>
+
 
 </body>
 </html>
