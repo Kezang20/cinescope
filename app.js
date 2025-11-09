@@ -361,11 +361,27 @@ function renderAbout() {
 
     const aboutCard = el('div', { class: 'form' },
         el('h2', { class: 'page-title' }, 'About CineScope'),
-        el('p', {}, 'CineScope is a prototype movie & TV explorer.'),
-        el('p', {}, 'This is a local demo using TMDB for content; watchlist and auth are stored locally. Our goal is to make discovering films enjoyable and simple by providing up-to-date recommendations and an easy-to-use interface. Whether you’re looking for your next favorite movie or just browsing for inspiration, CineScope is here to guide your journey through the world of cinema. This project was created by:')
+        el('p', {}, 'CineScope — An interactive movie and TV show platform. Explore trending titles, search for your favorites, and manage your watchlist with up-to-date information from TMDB.'),
+        el('p', {}, 'This is a local demo using TMDB for content; watchlist and auth are stored locally. Our goal is to make discovering films enjoyable and simple by providing up-to-date recommendations and an easy-to-use interface. Whether you’re looking for your next favorite movie or just browsing for inspiration, CineScope is here to guide your journey through the world of cinema.'),
+
+        // Purpose section
+        el('h3', {}, 'Purpose'),
+        el('p', {}, 'CineScope helps users easily explore movies and TV shows in one place. It provides real-time information, lets users search and filter content, and allows them to manage a personal watchlist.'),
+
+        // Our Goals section
+        el('h3', {}, 'Our Goals'),
+        el('ul', {},
+            el('li', {}, 'Make finding movies and TV shows fast and simple.'),
+            el('li', {}, 'Provide accurate, up-to-date information using reliable sources.'),
+            el('li', {}, 'Help users discover hidden gems and trending content.'),
+            el('li', {}, 'Offer a smooth, interactive experience with an easy-to-use interface.')
+        ),
+
+        // Team/Developers section
+        el('h3', {}, 'Team/Developers')
     );
 
-    // 👇 Move this *outside* the el() call
+    // Friends images / team photos
     const friendsSection = el('div', {
         class: 'friends-images',
         style: 'display:flex; gap:20px; flex-wrap:wrap; justify-content:center;'
