@@ -309,6 +309,38 @@ function renderWatchlist() {
     DOM.app.appendChild(grid);
 }
 
+async function renderGenre(name = 'Horror') {
+    DOM.app.innerHTML = '';
+    DOM.app.appendChild(el('h2', { class: 'page-title' }, `${name} Movies`));
+    const grid = el('div', { class: 'grid' });
+    DOM.app.appendChild(grid);
+    try {
+        // find genre id
+        const genres = await tmdb('/genre/movie/list', {});
+        const g = (genres.genres || []).find(x => x.name.toLowerCase() === name.toLowerCase());
+        if (!g) {
+            DOM.app.appendChild(el('div', { class: 'message' }, 'Genre not found.'));
+            return;
+        }
+        const data = await tmdb('/discover/movie', { with_genres: g.id, sort_by: 'popularity.desc', page: 1 });
+        (data.results || []).slice(0, 24).forEach(it => grid.appendChild(createCard(it)));
+    } catch (e) {
+        DOM.app.appendChild(el('div', { class: 'message' }, 'Failed to load genre.'));
+    }
+}
+
+async function renderRelease(year = '2022') {
+    DOM.app.innerHTML = '';
+    DOM.app.appendChild(el('h2', { class: 'page-title' }, `Released in ${year}`));
+    const grid = el('div', { class: 'grid' });
+    DOM.app.appendChild(grid);
+    try {
+        const data = await tmdb('/discover/movie', { primary_release_year: year, sort_by: 'popularity.desc', page: 1 });
+        (data.results || []).slice(0, 24).forEach(it => grid.appendChild(createCard(it)));
+    } catch (e) {
+        DOM.app.appendChild(el('div', { class: 'message' }, 'Failed to load release year.'));
+    }
+}
 
 async function renderHidden() {
     DOM.app.innerHTML = '';
