@@ -1,6 +1,6 @@
-/* CineScope SPA — plain HTML/CSS/JS
-   Replace YOUR_TMDB_API_KEY with a valid TMDB key.
-*/
+//CineScope SPA — plain HTML/CSS/JS
+//Contributed by Kezang Dema
+
 const TMDB_KEY = '5326de6853eb6b84402447748595915f';
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 const IMG = 'https://image.tmdb.org/t/p/w500';
@@ -26,6 +26,8 @@ let state = {
     user: loadUser(),
     lastQuery: ''
 };
+
+//Contributed by: Duptho Wangmo
 
 updateWatchCount();
 initEvents();
@@ -54,6 +56,8 @@ function parseHash() {
     }
     return { page: pagePart || 'home', params };
 }
+
+//Contributed by: Jigme Wangchuk and Karma Wangchuk
 
 function handleRouting() {
     const { page, params } = parseHash();
@@ -91,6 +95,8 @@ function el(tag, attrs = {}, ...children) {
     });
     return e;
 }
+
+//Contributed by: Jamyang Choden
 
 function placeholderPoster() {
     return 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='400' height='600'><rect width='100%' height='100%' fill='#111'/><text x='50%' y='50%' fill='#666' font-size='20' text-anchor='middle' dy='.35em'>No Poster</text></svg>`);
@@ -143,6 +149,8 @@ function createCard(item, { showAdd = true } = {}) {
     return tpl;
 }
 
+//Contributed by: Kalpana Monger
+
 /* ---------- Pages ---------- */
 
 async function renderHome() {
@@ -179,6 +187,8 @@ async function renderHome() {
     }
 }
 
+//Contributed by: Jamyang Choden
+
 async function renderSearch(query) {
     DOM.app.innerHTML = '';
     const q = query || state.lastQuery || '';
@@ -200,6 +210,8 @@ async function renderSearch(query) {
         DOM.app.appendChild(el('div', { class: 'message' }, 'Search failed.'));
     }
 }
+
+//Contributed by: Duptho Wangmo and Jigme Wangchuk
 
 async function renderDetails(id, type = 'movie') {
     DOM.app.innerHTML = '';
@@ -261,6 +273,8 @@ async function renderDetails(id, type = 'movie') {
         DOM.app.appendChild(el('div', { class: 'message' }, 'Failed to load details.'));
     }
 }
+
+//Contributed by: Kezang Dema
 
 /* ---------- Genre / Release / Hidden / About ---------- */
 const genresList = [
@@ -342,6 +356,8 @@ async function renderRelease(year = '2022') {
     }
 }
 
+//Contributed by: Kalpana Monger
+
 async function renderHidden() {
     DOM.app.innerHTML = '';
     DOM.app.appendChild(el('h2', { class: 'page-title' }, 'Hidden Gems'));
@@ -381,6 +397,8 @@ function renderAbout() {
         el('h3', {}, 'Team/Developers')
     );
 
+    //Contributed by: Karma Wangchuk
+
     // Friends images / team photos
     const friendsSection = el('div', {
         class: 'friends-images',
@@ -416,7 +434,7 @@ function renderAbout() {
     DOM.app.appendChild(aboutCard);
 }
 
-
+//Contributed by: Karma Wangchuk and Jigme Wangchuk
 
 /* ---------- Auth pages (local only) ---------- */
 function renderLogin() {
@@ -443,6 +461,7 @@ function renderSignup() {
     );
     DOM.app.appendChild(form);
 }
+
 
 /* ---------- Watchlist CRUD & auth ---------- */
 function loadWatchlist() {
@@ -492,6 +511,8 @@ function updateAuthBtn() {
     else DOM.authBtn.onclick = () => { location.hash = 'login'; };
 }
 
+//Contributed by: Duptho Wangmo and Kezang Dema
+
 /* ---------- UI events ---------- */
 function initEvents() {
     // search
@@ -535,6 +556,8 @@ function showToast(text, ms = 2000) {
     toastTimer = setTimeout(() => { DOM.toast.classList.add('hidden'); DOM.toast.textContent = ''; toastTimer = null; }, ms);
 }
 
+//Contributed by: Jigme Wangchuk
+
 /* ---------- boot ---------- */
 function updateWatchCount() { DOM.watchCount.textContent = state.watchlist.length; }
 updateWatchCount();
@@ -566,6 +589,8 @@ function renderWatchlist() {
       </div>
     `;
 
+    //Contributed by: Jamyang Choden and Kalpana Monger
+
         // Mark Watched
         const markBtn = card.querySelector(".mark-watched-btn");
         if (movie.watched) markBtn.disabled = true;
@@ -595,6 +620,9 @@ function renderWatchlist() {
         grid.appendChild(card);
     });
 }
+
+//Cotributed by: Karma Wangchuk and Kezang Dema
+
 /* ---------- Init ---------- */
 window.addEventListener('hashchange', handleRouting);
 populateGenres();
